@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My First React Component</title>
+    </head>
+    <body>
+        <div id="app"></div>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.1.0/umd/react.development.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.1.0/umd/react-dom.development.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+     <script type="text/babel">
+        
+        function ListItem(props) {
+            return <li>{props.name}</li>
+        }
+        
+        class ShoppingList extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    date: new Date(),
+                };
+            }
+
+            render() {
+                let items = this.props.list.map((item) => <ListItem name={item}/>);
+                
+                return (
+                    <div>
+                        <ol>{items}</ol>
+                        <h3>Last rendered on: {this.state.date.toLocaleTimeString()}.</h3>
+                    </div>
+                );
+            }
+        }
+
+        
+
+        let groceries = ['Apples', 'Bananas', 'Kiwis', 'Tofu']
+        ReactDOM.render(<ShoppingList list={groceries}/>, document.getElementById('app'));
+     </script>
+    </body>
+</html>
